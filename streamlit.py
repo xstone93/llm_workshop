@@ -59,7 +59,7 @@ if apply_clicked:
 
 # Store current play_audio setting
 if "play_audio" not in st.session_state:
-    st.session_state.play_audio = True
+    st.session_state.play_audio = False
 
 # Main UI
 st.title("💬 IT:U Chatbot")
