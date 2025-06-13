@@ -1,4 +1,4 @@
-import llm_workshop.streamlit as st
+import streamlit as st
 from openai import OpenAI
 from typing import List
 import requests
@@ -30,7 +30,7 @@ def call_openrouter_model(model_name, messages, api_key):
 st.sidebar.title("🔧 Chatbot Configuration")
 
 with st.sidebar.form("config_form"):
-    system_prompt = st.text_area("System Prompt", "You are a helpful multimodal assistant. If the user asks for something visual, respond with: 'Please generate an image of: <prompt>'.")
+    system_prompt = st.text_area("System Prompt", "You are a helpful tutor giving short answers.")
     custom_prompt = st.text_area("Custom Prompt (Optional)", "")
     model = st.selectbox("Model", [
         "gpt-3.5-turbo",
@@ -59,7 +59,7 @@ if apply_clicked:
 
 # Store current play_audio setting
 if "play_audio" not in st.session_state:
-    st.session_state.play_audio = True
+    st.session_state.play_audio = False
 
 # Main UI
 st.title("💬 IT:U Chatbot")
