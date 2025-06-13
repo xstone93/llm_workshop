@@ -1,4 +1,4 @@
-import llm_workshop.streamlit as st
+import streamlit as st
 from openai import OpenAI
 from typing import List
 import requests
