@@ -8,7 +8,7 @@ import json
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"] if "OPENAI_API_KEY" in st.secrets else "YOUR_API_KEY_HERE")
 
 # Generic function to call OpenRouter-compatible models (Mistral, DeepSeek, etc.)
-def call_openrouter_model(model_name, messages, api_key):
+def call_openrouter_model(model_name, messages, temperature, api_key):
     headers = {
         "Authorization": f"Bearer {api_key}",
         "HTTP-Referer": "https://yourapp.com",
@@ -19,7 +19,7 @@ def call_openrouter_model(model_name, messages, api_key):
     payload = {
         "model": model_name,
         "messages": [{"role": m["role"], "content": m["content"]} for m in messages],
-        "temperature": 0.7
+        "temperature": temperature
     }
 
     response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
@@ -84,7 +84,7 @@ if user_input:
         try:
             if model.startswith("mistral") or model.startswith("deepseek"):
                 openrouter_key = st.secrets.get("MISTRAL_API_KEY", "your-openrouter-key")
-                reply = call_openrouter_model(model, st.session_state.messages, openrouter_key)
+                reply = call_openrouter_model(model, st.session_state.messages, temperature, openrouter_key)
             else:
                 response = client.chat.completions.create(
                     model=model,
@@ -119,7 +119,7 @@ if user_input:
                     try:
                         audio_response = client.audio.speech.create(
                             model="tts-1",
-                            voice="nova",
+                            voice="ash",
                             input=reply
                         )
                         audio_bytes = audio_response.read()
