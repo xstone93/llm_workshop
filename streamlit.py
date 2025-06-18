@@ -37,7 +37,7 @@ with st.sidebar.form("config_form"):
         "gpt-4",
         "gpt-4o",
         "deepseek/deepseek-r1-0528-qwen3-8b:free",
-        "qwen/qwen3-0.6b-04-28:free", 
+        "opengvlab/internvl3-2b:free", 
         "mistralai/mistral-7b-instruct:free"
     ])
     temperature = st.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
