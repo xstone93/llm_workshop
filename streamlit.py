@@ -36,7 +36,9 @@ with st.sidebar.form("config_form"):
         "gpt-3.5-turbo",
         "gpt-4",
         "gpt-4o",
-        "deepseek/deepseek-r1-0528-qwen3-8b:free"
+        "deepseek/deepseek-r1-0528-qwen3-8b:free",
+        "qwen/qwen3-0.6b-04-28:free", 
+        "mistralai/mistral-7b-instruct:free"
     ])
     temperature = st.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
     max_tokens = st.slider("Max tokens", 50, 1000, 500, 50)
